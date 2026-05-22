@@ -1,0 +1,42 @@
+{{ define "page_pppoe" }}
+    <div id="page-monitoring" class="page">
+      <div class="panel">
+        <div class="panel-body">
+          <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end">
+            <div style="flex:1;min-width:150px"><label class="form-lbl">Router</label><select id="f-router" class="form-inp" onchange="loadPPP(1)"><option value="">Semua Router</option></select></div>
+            <div style="flex:1;min-width:120px"><label class="form-lbl">Status</label><select id="f-status" class="form-inp" onchange="loadPPP(1)"><option value="">Semua</option><option value="online">Online</option><option value="offline">Offline</option></select></div>
+            <div style="flex:1;min-width:140px"><label class="form-lbl">Profile PPP</label><input id="f-profile" type="text" class="form-inp" placeholder="Filter profile..." oninput="debounce_ppp()"></div>
+            <div style="flex:2;min-width:180px"><label class="form-lbl">Search Username / IP / Router</label><input id="f-search" type="text" class="form-inp" placeholder="Cari..." oninput="debounce_ppp()"></div>
+            <button class="btn btn-secondary" onclick="clearFilter()">Reset</button>
+            <button class="btn btn-primary" id="ppp-add-btn" onclick="openPPPUserModal()">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+              Add User PPP
+            </button>
+          </div>
+          <div id="filter-row" style="display:none;margin-top:10px"></div>
+          <div style="font-size:12px;color:var(--muted);margin-top:10px;line-height:1.5">Data user diambil live dari MikroTik API dan disesuaikan dengan <span class="font-mono">/ppp/secret/print</span> untuk profile, status disable, penandaan isolir, dan sinkron status aktif.</div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-hdr">
+          <div style="display:flex;align-items:center;gap:10px">
+            <h3>Data User PPPOE Management</h3>
+            <span id="live-ind" style="display:none;align-items:center;gap:4px;font-size:11px;background:rgba(16,185,129,.1);color:#34d399;padding:3px 8px;border-radius:12px"><span class="dot-live" style="width:6px;height:6px"></span>Live</span>
+          </div>
+          <span id="ppp-total" style="font-size:12px;color:var(--muted)"></span>
+        </div>
+        <div class="overflow-x">
+          <table class="tbl mobile-stack-table ppp-mobile-card-table">
+            <thead><tr><th>No</th><th>Username</th><th>IP Address</th><th>Uptime</th><th>Router</th><th>Profile</th><th>Service</th><th>Caller-ID / MAC</th><th>Last Seen</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody id="ppp-tbody"><tr><td colspan="11" class="empty">Loading...</td></tr></tbody>
+          </table>
+        </div>
+        <div style="padding:12px 16px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between">
+          <div id="ppp-info" style="font-size:12px;color:var(--muted)"></div>
+          <div id="ppp-pages" class="pagination"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- USER MONITORING -->
+{{ end }}

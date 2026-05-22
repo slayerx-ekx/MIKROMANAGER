@@ -1,0 +1,27 @@
+{{ define "page_users" }}
+    <div id="page-users" class="page">
+      <div style="display:flex;justify-content:flex-end;margin-bottom:16px">
+        <button class="btn btn-primary" onclick="openUserModal(0)">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          Tambah User Baru
+        </button>
+      </div>
+      <div class="grid4" style="margin-bottom:20px">
+        <div class="soft-card"><span class="badge b-sa">super_admin</span><div style="font-size:12px;color:var(--muted);margin-top:6px">Akses penuh semua fitur</div></div>
+        <div class="soft-card"><span class="badge b-admin">admin</span><div style="font-size:12px;color:var(--muted);margin-top:6px">Semua fitur kecuali user mgmt</div></div>
+        <div class="soft-card"><span class="badge b-tek">teknisi</span><div style="font-size:12px;color:var(--muted);margin-top:6px">Dashboard dan PPPOE Management</div></div>
+        <div class="soft-card"><span class="badge b-view">viewer</span><div style="font-size:12px;color:var(--muted);margin-top:6px">Hanya Dashboard & Monitoring</div></div>
+      </div>
+      <div class="panel">
+        <div class="panel-hdr"><h3>Daftar User</h3></div>
+        <div class="overflow-x">
+          <table class="tbl mobile-stack-table">
+            <thead><tr><th>User</th><th>Username</th><th>Role</th><th>Status</th><th>Last Login</th><th>Action</th></tr></thead>
+            <tbody id="users-tbody"><tr><td colspan="6" class="empty">Loading...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- MONITORING -->
+{{ end }}
