@@ -1,0 +1,44 @@
+{{ define "page_nms" }}
+    <div id="page-nms" class="page">
+      <div class="panel nms-builder-panel" id="nms-builder-panel">
+        <div class="panel-hdr"><h3>NMS</h3></div>
+        <div class="panel-body nms-builder-body">
+          <div class="nms-builder-grid">
+            <div class="nms-builder-field is-wide">
+              <label class="form-lbl">Router</label>
+              <select id="nms-router" class="form-inp" onchange="loadNMSInterfaces()"><option value="">-- Pilih Router --</option></select>
+            </div>
+            <div class="nms-builder-field is-wide">
+              <label class="form-lbl">Interface SNMP (opsional)</label>
+              <select id="nms-interface" class="form-inp"><option value="">Semua Interface</option></select>
+            </div>
+            <div class="nms-builder-field">
+              <label class="form-lbl">Nama Widget</label>
+              <input id="nms-title" class="form-inp" placeholder="Contoh: Uplink Core">
+            </div>
+            <div class="nms-builder-field">
+              <label class="form-lbl">Alert Mbps</label>
+              <input id="nms-alert" type="number" class="form-inp" min="1" value="100">
+            </div>
+            <div class="nms-builder-field">
+              <label class="form-lbl">Refresh</label>
+              <select id="nms-interval" class="form-inp"><option value="1000">1 detik</option><option value="2000">2 detik</option><option value="3000" selected>3 detik</option><option value="5000">5 detik</option><option value="10000">10 detik</option><option value="15000">15 detik</option><option value="30000">30 detik</option><option value="60000">1 menit</option><option value="120000">2 menit</option><option value="300000">5 menit</option><option value="600000">10 menit</option><option value="900000">15 menit</option></select>
+            </div>
+            <div class="nms-builder-field">
+              <label class="form-lbl">Layout</label>
+              <select id="nms-layout-mode" class="form-inp" onchange="setNMSLayoutMode(this.value)"><option value="auto">Auto</option><option value="1">1x1</option><option value="2">1x2</option><option value="3">3x1</option><option value="4">4x4</option></select>
+            </div>
+          </div>
+          <div class="nms-builder-actions">
+            <button class="btn btn-primary" onclick="addNMSWidget()">Tambah Widget</button>
+            <button class="btn btn-secondary" onclick="testCurrentNMSSNMP()">Test SNMP</button>
+            <button class="btn btn-secondary" onclick="clearNMSLayout()">Reset Layout</button>
+          </div>
+          <div class="nms-builder-note">Widget tersimpan otomatis, menyesuaikan lebar layar, dan tidak perlu drag atau save manual lagi.</div>
+        </div>
+      </div>
+      <div id="nms-workspace" class="nms-workspace"></div>
+    </div>
+
+    <!-- OLT Dashboard -->
+{{ end }}

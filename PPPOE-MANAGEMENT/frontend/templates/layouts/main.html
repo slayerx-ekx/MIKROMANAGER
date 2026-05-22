@@ -1,0 +1,22 @@
+{{ define "main" }}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+{{ template "head" . }}
+</head>
+<body>
+{{ template "sidebar" . }}
+
+<!-- MAIN -->
+<div id="main">
+{{ template "navbar" . }}
+
+  <div id="content">
+{{ template "content" . }}
+  </div><!-- /content -->
+</div><!-- /main -->
+
+{{ template "footer" . }}
+</body>
+</html>
+{{ end }}
